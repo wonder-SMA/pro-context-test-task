@@ -104,10 +104,16 @@ const onChangeAmount = (itemId, amount) => {
 	}
 	
 	.collapsible-list__body {
-		padding: 12px 76px 0 60px;
+		padding: 12px 15px 0 50px;
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
+	}
+
+	@media screen and (min-width: 425px) {
+		.collapsible-list__body {
+			padding: 12px 76px 0 60px;
+		}
 	}
 }
 </style>
