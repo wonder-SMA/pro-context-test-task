@@ -16,7 +16,6 @@
 	line-height: 1;
 	color: white;
 	background-color: #26a6f2;
-	outline-offset: 4px;
 	user-select: none;
 	touch-action: manipulation;
 	cursor: pointer;

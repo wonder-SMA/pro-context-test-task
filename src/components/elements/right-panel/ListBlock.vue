@@ -80,6 +80,8 @@ const onDeleteItem = (itemId, idx) => {
   } else {
     appStore.changeItemAmount(itemId, props.list.id, null, () => {});
   }
+
+  if (idx === 1) mix();
 };
 </script>
 

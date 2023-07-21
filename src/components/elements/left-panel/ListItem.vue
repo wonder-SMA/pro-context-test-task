@@ -40,11 +40,13 @@ const onInput = (event) => {
 };
 
 const onChange = (event) => {
+  let rawValue = event.target.value.toString().trim();
+
   // Если было введено пустое значение, то ставим 0
-  if (!event.target.value.length) {
-    event.target.value = 0;
+  if (!rawValue) {
+    rawValue = 0;
   }
-  let value = parseInt(event.target.value, 10);
+  let value = parseInt(rawValue, 10);
 
   // Ставим ограничение на 100 штук для item
   if (value > 100) {
@@ -79,6 +81,7 @@ const onChange = (event) => {
 				ref="inputRef"
 				type="text"
 				:value="item.amount"
+				title="Изменить количество"
 				@keydown="onKeyDown"
 				@input="onInput"
 				@change="onChange"
@@ -87,6 +90,7 @@ const onChange = (event) => {
 				class="list-item__color-picker"
 				type="color"
 				:value="item.color"
+				title="Изменить цвет"
 				@change="emit('changeColor', item.id, $event.target.value)"
 			/>
 		</div>
@@ -129,6 +133,7 @@ const onChange = (event) => {
 			height: 16px;
 			border: none;
 			background: none;
+			outline-offset: 4px;
 			appearance: none;
 			cursor: pointer;
 

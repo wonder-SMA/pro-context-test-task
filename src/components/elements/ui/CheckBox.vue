@@ -22,7 +22,7 @@ const emit = defineEmits(['check']);
 
 const onCheck = (event) => {
   if (event.target.classList.contains('custom-checkbox__input')) {
-    emit('check', true);
+    emit('check', event.target.checked);
   } else if (
     event.target.classList.contains('custom-checkbox__mark') ||
     event.target.parentElement.classList.contains('custom-checkbox__mark')
@@ -30,10 +30,16 @@ const onCheck = (event) => {
     emit('check', false);
   }
 };
+
+const onKeyDown = (event) => {
+  if (event.code === 'Space') {
+    event.target.firstChild.click();
+  }
+};
 </script>
 
 <template>
-	<div class="custom-checkbox" @click="onCheck">
+	<div class="custom-checkbox" @click="onCheck" @keydown="onKeyDown" :tabindex="0">
 		<input class="custom-checkbox__input" type="checkbox" :id="id" :checked="checked" />
 		<label
 			class="custom-checkbox__label"
@@ -62,6 +68,7 @@ const onCheck = (event) => {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	outline-offset: 4px;
 
 	.custom-checkbox__input {
 		position: absolute;

@@ -24,21 +24,27 @@ const onClick = () => {
   isOpen.value = !isOpen.value;
 };
 
+const onKeyDown = (event) => {
+  if (event.code === 'Space') {
+    onClick();
+  }
+};
+
 // При клике на чекбокс item
 const onCheckItem = (itemId, checked) => {
   appStore.checkOneItem(itemId, props.list.id, checked);
-}
+};
 
 // При клике на чекбокс list
 const onCheckList = (checked) => appStore.checkAllItems(props.list.id, checked);
 
 const onChangeColor = (itemId, color) => {
   appStore.changeItemColor(itemId, props.list.id, color);
-}
+};
 
 const onChangeAmount = (itemId, amount) => {
   appStore.changeItemAmount(itemId, props.list.id, amount, () => {});
-}
+};
 </script>
 
 <template>
@@ -51,6 +57,7 @@ const onChangeAmount = (itemId, amount) => {
 				:width="24"
 				:label="label"
 				@click="onClick"
+				@keydown="onKeyDown"
 			/>
 			<CheckboxWithLabel
 				:id="list.id"

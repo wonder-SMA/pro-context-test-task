@@ -44,9 +44,9 @@ const emit = defineEmits(['check']);
 
 <style lang="scss" scoped>
 .checkbox-with-label {
-	padding-bottom: 2px;
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	gap: 12px;
 }
 </style>
