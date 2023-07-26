@@ -36,7 +36,7 @@ const emit = defineEmits(['click']);
 			stroke-width="1.5"
 			stroke="currentColor"
 			:class="['arrow-icon', {rotated: isOpen}]"
-			:style="`width: ${width}px; height: ${height}px`"
+			:style="{width: `${width}px`, height: `${height}px`}"
 			@click="emit('click')"
 		>
 

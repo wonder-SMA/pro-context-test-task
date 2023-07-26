@@ -44,7 +44,7 @@ const onKeyDown = (event) => {
 		<label
 			class="custom-checkbox__label"
 			:for="id"
-			:style="`width: ${width}px; height: ${height}px`"
+			:style="{width: `${width}px`, height: `${height}px`}"
 		>
 			<slot />
 		</label>
@@ -55,7 +55,7 @@ const onKeyDown = (event) => {
 			stroke-width="1.5"
 			stroke="currentColor"
 			class="custom-checkbox__mark"
-			:style="`width: ${width}px; height: ${height}px`"
+			:style="{width: `${width}px`, height: `${height}px`}"
 		>
 			<path d="M4.5 12.75l6 6 9-13.5" />
 		</svg>

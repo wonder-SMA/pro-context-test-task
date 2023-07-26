@@ -19,9 +19,19 @@ const props = defineProps({
 const appStore = useAppStore();
 
 const isOpen = ref(false);
+const listRef = ref(null);
 
 const onClick = () => {
   isOpen.value = !isOpen.value;
+
+  setTimeout(() => {
+    if (isOpen.value) {
+      const { height } = getComputedStyle(listRef.value.lastChild);
+      listRef.value.style.height = 16 + parseInt(height) + 'px';
+    } else {
+      listRef.value.style.height = '16px';
+    }
+  }, 0);
 };
 
 const onKeyDown = (event) => {
@@ -48,7 +58,7 @@ const onChangeAmount = (itemId, amount) => {
 </script>
 
 <template>
-	<div class="collapsible-list">
+	<div class="collapsible-list" ref="listRef">
 		<div class="collapsible-list__header">
 			<ArrowButton
 				class="arrow-icon-button"
@@ -73,25 +83,44 @@ const onChangeAmount = (itemId, amount) => {
 				/>
 			</CheckboxWithLabel>
 		</div>
-		<div
-			v-if="isOpen"
-			class="collapsible-list__body"
-		>
-			<ListItem
-				v-for="(item, index) in list.items"
-				:key="item.id"
-				:item="item"
-				:label="`Item ${index + 1}`"
-				@check="onCheckItem"
-				@change-color="onChangeColor"
-				@change-amount="onChangeAmount"
-			/>
-		</div>
+		<Transition name="slide-fade">
+			<div
+				v-if="isOpen"
+				class="collapsible-list__body"
+			>
+				<ListItem
+					v-for="(item, index) in list.items"
+					:key="item.id"
+					:item="item"
+					:label="`Item ${index + 1}`"
+					@check="onCheckItem"
+					@change-color="onChangeColor"
+					@change-amount="onChangeAmount"
+				/>
+			</div>
+		</Transition>
 	</div>
 </template>
 
 <style lang="scss" scoped>
 .collapsible-list {
+	height: 16px;
+	overflow: hidden;
+	transition: height 0.3s ease-in-out;
+
+	.slide-fade-enter-active {
+		transition: all 0.3s ease-in;
+	}
+
+	.slide-fade-leave-active {
+		transition: all 0.3s ease-out;
+	}
+
+	.slide-fade-enter-from,
+	.slide-fade-leave-to {
+		opacity: 0;
+	}
+
 	.collapsible-list__header {
 		height: 16px;
 		display: flex;

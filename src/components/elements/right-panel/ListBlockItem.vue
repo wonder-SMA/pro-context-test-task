@@ -27,7 +27,7 @@ const onKeyDown = (event, index, item) => {
 			tabindex="0"
 			v-for="(item, index) in items"
 			:key="isMixColor ? index : item"
-			:style="`background-color: ${isMixColor ? item.color : itemSet[0].color}`"
+			:style="{'background-color': `${isMixColor ? item.color : itemSet[0].color}`}"
 			@click="emit('delete', isMixColor ? item.id : itemSet[0].id, isMixColor ? index : item)"
 			@keydown="onKeyDown($event, index, item)"
 		/>
